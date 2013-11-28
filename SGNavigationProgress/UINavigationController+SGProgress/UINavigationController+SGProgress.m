@@ -187,7 +187,7 @@ CGFloat const SGProgressBarHeight = 2.5;
 		
 	} completion:^(BOOL finished)
 	 {
-		 if(percentage >= 100.0)
+		 if(percentage > 100.0)
 		 {
 			 [UIView animateWithDuration:0.5 animations:^{
 				 progressView.alpha = 0;
