@@ -13,6 +13,19 @@ NSInteger const SGProgressMasktagId = 221222322;
 NSInteger const SGProgressMiniMasktagId = 221222321;
 CGFloat const SGProgressBarHeight = 2.5;
 
+@interface SGTintView : UIView
+
+@end
+
+@implementation SGTintView
+
+- (void)tintColorDidChange
+{
+    self.backgroundColor = self.tintColor;
+}
+
+@end
+
 @implementation UINavigationController (SGProgress)
 
 - (CGRect)getSGMaskFrame
@@ -61,7 +74,7 @@ CGFloat const SGProgressBarHeight = 2.5;
 	
 	if(!progressView)
 	{
-		progressView = [[UIView alloc] initWithFrame:CGRectMake(0, y, 0, SGProgressBarHeight)];
+		progressView = [[SGTintView alloc] initWithFrame:CGRectMake(0, y, 0, SGProgressBarHeight)];
 		progressView.tag = SGProgresstagId;
 		progressView.backgroundColor = tintColor;
 		[self.navigationBar addSubview:progressView];
@@ -95,12 +108,12 @@ CGFloat const SGProgressBarHeight = 2.5;
 
 	if(!mask)
 	{
-		mask = [[UIView alloc] initWithFrame:[self getSGMaskFrame]];
+		mask = [[SGTintView alloc] initWithFrame:[self getSGMaskFrame]];
 		mask.tag = SGProgressMasktagId;
 		mask.backgroundColor = [self getSGMaskColor];
 		mask.alpha = 0;
 		
-		miniMask = [[UIView alloc] initWithFrame:[self getSGMiniMaskFrame]];
+		miniMask = [[SGTintView alloc] initWithFrame:[self getSGMiniMaskFrame]];
 		miniMask.tag = SGProgressMiniMasktagId;
 		miniMask.backgroundColor = [self getSGMaskColor];
 		miniMask.alpha = 0;
